@@ -1,0 +1,81 @@
+.navbar-custom {
+    background-color: #1a1c1e;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: #00ffff;
+}
+
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .nav-link:hover {
+    color: #e0e0e0;
+}
+
+.navbar-custom .navbar-toggler {
+  border-color: #00ffff;
+}
+
+.navbar-custom .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%2300ffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-custom .navbar-toggler:focus,
+.navbar-custom .navbar-toggler:active {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(0, 255, 255, 0.5);
+}
+
+.navbar-custom {
+  border-bottom: 2px solid #00ffff;
+}
+
+/* Animations */
+
+.navbar-custom .nav-link {
+  position: relative;
+  color: #00ffff;
+  transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #e0e0e0;
+  transition: width 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #e0e0e0;
+}
+
+.navbar-custom .nav-link:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+      opacity 0.3s ease-out,
+      transform 0.3s ease-out,
+      max-height 0.3s ease-out;
+  }
+
+  .navbar-collapse.show {
+    max-height: 600px; /* Adjust based on content height */
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.3s ease-in,
+      transform 0.3s ease-in,
+      max-height 0.3s ease-in;
+  }
+}
