@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Auth Redirect</title>
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p>Signing you in...</p>
+
     <script>
-        // Get query params from Google
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
 
+        console.log("CODE:", code);
+
         if (code) {
-            // Redirect to your app
+            // Redirect back to your app
             window.location.href = "rang://auth?code=" + code;
         } else {
-            document.body.innerText = "No code found.";
+            document.body.innerText = "No code found in URL.";
         }
     </script>
-</head>
-<body>
-Redirecting...
 </body>
 </html>
