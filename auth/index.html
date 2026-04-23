@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirecting...</title>
+    <title>Redirecting to App...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #007BFF;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <p>Signing you in...</p>
+    <h2>Signing you in...</h2>
+    <p id="message">Attempting to open the app automatically.</p>
+    
+    <a id="manual-btn" class="btn" href="#" style="display: none;">Click here to return to App</a>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
 
-        console.log("CODE:", code);
-
         if (code) {
-            // Redirect back to your app
-            window.location.href = "rang://auth?code=" + code;
+            const deepLink = "rang://auth?code=" + code;
+            
+            // 1. Set the button link just in case
+            const btn = document.getElementById("manual-btn");
+            btn.href = deepLink;
+            btn.style.display = "inline-block";
+            
+            document.getElementById("message").innerText = "If the app doesn't open automatically, tap the button below.";
+
+            // 2. Attempt the automatic redirect
+            // Using a slight timeout sometimes helps bypass browser pop-up blockers
+            setTimeout(() => {
+                window.location.href = deepLink;
+            }, 500);
+
         } else {
-            document.body.innerText = "No code found in URL.";
+            document.getElementById("message").innerText = "Error: No authorization code found in URL.";
         }
     </script>
 </body>
